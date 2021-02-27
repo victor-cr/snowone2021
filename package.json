@@ -1,0 +1,43 @@
+{
+  "name": "graalvm-samples",
+  "version": "1.0.0",
+  "description": "GraalVM JavaFest 2020 code samples",
+  "author": "Viktor Polishchuk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor-cr/javafest-2020.git"
+  },
+  "bugs": {
+    "url": "https://github.com/victor-cr/javafest-2020/issues"
+  },
+  "homepage": "https://github.com/victor-cr/javafest-2020#readme",
+  "main": "src/main/js/index.js",
+  "scripts": {
+    "clean": "mvn clean",
+    "package": "mvn compile package",
+    "bmnode": "/usr/bin/node --unhandled-rejections=strict src/main/js/bm-node.js",
+    "bmvmnode": "node --unhandled-rejections=strict --jvm src/main/js/bm-node.js",
+    "bmjava": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/bm-java.js",
+    "start2": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/example2.js",
+    "start3": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/example3.js",
+    "start4": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/example4.js",
+    "start5": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/example5.js",
+    "start6": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/example6.js",
+    "start7": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/example7.js",
+    "start8": "npm run-script package && node --unhandled-rejections=strict --jvm --vm.cp=target/graalvm-samples-1.0.0-SNAPSHOT.jar src/main/js/example8.js"
+  },
+  "keywords": [
+    "javascript",
+    "java",
+    "nodejs",
+    "graalvm"
+  ],
+  "devDependencies": {
+    "benny": "^3.6.15"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "chart.js": "^2.9.4"
+  }
+}

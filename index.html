@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Benchmark Results</title>
+    <script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+</head>
+<body onload="render()">
+<div id="main">
+    <canvas id="chart"></canvas>
+</div>
+<script>
+    function render() {
+        const colors = [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 103, 107)',
+            'rgb(201, 3, 207)',
+            'rgb(201, 3, 7)',
+            'rgb(201, 93, 7)',
+            'rgb(1, 103, 207)'
+        ];
+        const color = Chart.helpers.color;
+        const context = document.getElementById("chart").getContext('2d');
+
+        Promise.all(["benchmark/results/nodejs.json", "benchmark/results/java.json"].map(file => fetch(file).then(r => r.json())))
+            .then(data => {
+                return {
+                    datasets: data.flatMap(record => record.results.map(testData => ({
+                        label: testData.name + ' [' + record.name + ']',
+                        data: testData.details.sampleResults.map(x => ({x: x * 1000000, y: testData.samples}))
+                    }))).map((record, index) => ({
+                        borderColor: colors[index],
+                        backgroundColor: color(colors[index]).alpha(0.5).rgbString(),
+                        ...record
+                    }))
+                };
+            })
+            .then(data => Chart.Scatter(context, {
+                data,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'GraalVM 21.0.0.2 Benchmark'
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: 'logarithmic',
+                            position: 'bottom',
+                            ticks: {
+                                userCallback: function (tick) {
+                                    const remain = tick / (Math.pow(10, Math.floor(Chart.helpers.log10(tick))));
+                                    if (remain === 1 || remain === 2 || remain === 5) {
+                                        if (tick < 1000) {
+                                            return tick.toString() + ' \u03bcs';
+                                        } else if (tick < 1000000) {
+                                            return (tick / 1000).toString() + ' ms';
+                                        } else {
+                                            return (tick / 1000000).toString() + ' s';
+                                        }
+                                    }
+                                    return null;
+                                },
+                            },
+                            scaleLabel: {
+                                labelString: 'Operation Time',
+                                display: true,
+                            }
+                        }],
+                        yAxes: [{
+                            type: 'linear',
+                            scaleLabel: {
+                                labelString: 'Cycles Performed',
+                                display: true,
+                            }
+                        }]
+                    }
+                }
+            }))
+            .then(chart => window.chartCanvas = chart);
+    }
+</script>
+</body>
+</html>

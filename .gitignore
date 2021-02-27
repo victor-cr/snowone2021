@@ -1,0 +1,24 @@
+##
+## JetBrains IntelliJ IDEA
+##
+.idea/
+*.iml
+*.iws
+*.ipr
+
+##
+## Maven
+##
+target/
+
+##
+## NPM
+##
+node_modules/
+package-lock.json
+benchmark/
+
+##
+## Etc
+##
+*.log
