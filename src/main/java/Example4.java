@@ -24,7 +24,7 @@ public class Example4 {
         }
     }
 
-    public static void read(byte[] fileName, Function<String, String> reader) {
-        System.out.println(reader.apply(new String(fileName)));
+    public static void read(String fileName, Function<String, String> reader) {
+        System.out.println(reader.apply(fileName));
     }
 }

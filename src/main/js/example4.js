@@ -1,5 +1,5 @@
 
 const reader = (fileName) => String(require('fs').readFileSync(fileName))
 console.log('==== GraalVM example #04 ====');
-Java.type('Example4').read(new Array(48,49,50), reader)
+Java.type('Example4').read("src/main/java/Example4.java", reader)
 console.log('=============================');

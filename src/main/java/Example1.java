@@ -8,7 +8,7 @@ public class Example1 {
             context.eval(
                     "js",
                     /* language=js */
-                    "const greetings = 'Hello too1';" +
+                    "const greetings = 'Hello too';" +
                             "console.log('Javascript says: ' + greetings);");
         }
         System.out.println("=============================");

@@ -1,17 +1,17 @@
 {
   "name": "graalvm-samples",
   "version": "1.0.0",
-  "description": "GraalVM JavaFest 2020 code samples",
+  "description": "GraalVM SnowOne 2021 code samples",
   "author": "Viktor Polishchuk",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/victor-cr/javafest-2020.git"
+    "url": "git+https://github.com/victor-cr/snowone2021.git"
   },
   "bugs": {
-    "url": "https://github.com/victor-cr/javafest-2020/issues"
+    "url": "https://github.com/victor-cr/snowone2021/issues"
   },
-  "homepage": "https://github.com/victor-cr/javafest-2020#readme",
+  "homepage": "https://github.com/victor-cr/snowone2021#readme",
   "main": "src/main/js/index.js",
   "scripts": {
     "clean": "mvn clean",
